@@ -25,10 +25,37 @@
 # Output: "A"
 class Solution:
     def convert(self, inputString, numRows):
-        pass
-
+        if len(inputString) < 1:
+            return 0
+        if len(inputString) < 3 or numRows >= len(inputString):
+            return inputString
+        else:
+            variable, linenumber, pointer, Flag, result = globals(), 0, 0, True, str()
+            for row in range(numRows):
+                variable["string%s" % (row+1)] = str()
+                # listA.append("string{0}".format(row))
+        
+            for index1 in range(len(inputString)):
+                linenumber += 1
+                variable["string%s" % (linenumber)] += inputString[pointer]
+                pointer +=1
+                if pointer == len(inputString):
+                    break
+                if linenumber == numRows:
+                    for index2 in range(numRows-1, 1,-1):
+                        variable["string%s" % (index2)] += inputString[pointer]
+                        pointer +=1
+                        if pointer == len(inputString):
+                            Flag  = False
+                            break
+                    linenumber = 0
+                if Flag == False:
+                    break
+            for row in range(numRows):
+                result += variable["string%s" % (row+1)]
+            return result
 
 sol = Solution()
-inputString = input("Enter The Total Number Of Elements To Be Insert In A List: ")
-numRows = int(input("Enter The Total Number Of Elements To Be Insert In A List: "))
-print(f"The Output Of Given Input: {inputString} is:\t", sol.convert(inputString, numRows))
+inputString = input("Enter The String As Input: ")
+numRows = int(input("Enter The Number Of Rows For ZigZag Pattern: "))
+print(f"The ZigZag Pattern Of Given String '{inputString}' is:\t", sol.convert(inputString, numRows))

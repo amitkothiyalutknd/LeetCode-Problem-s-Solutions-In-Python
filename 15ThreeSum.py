@@ -22,25 +22,23 @@
 # Explanation: The only possible triplet sums up to 0.
 class Solution:
     def threeSum(self, nums):
-        index1, output, listing = 0, [0] * 3, []
-        nums.sort()
-        while index1 < (len(nums) - 2):
-            index2 = index1 + 1
-            while index2 < (len(nums)):
-                index3 = index2 + 1
-                while index3 < (len(nums)):
-                    if (nums[index1] + nums[index2] + nums[index3] == 0) and (index1 != index2) and (index1 != index2) and (index2 != index3):
-                        output[0], output[1], output[2] = nums[index1], nums[index2], nums[index3]
-                        if output not in listing:
-                            listing.append(output[:])
-                    index3 = index3 + 1
-                index2 = index2 + 1
-            index1 = index1 + 1
+        nums, listing = sorted(nums), []
+        for index in range(len(nums) - 2):
+            left, right = index + 1, len(nums) - 1
+            while left<right:
+                sums = nums[index] + nums[left] + nums[right]
+                if (nums[index] + nums[left] + nums[right] == 0) and (index != left) and (index != right) and (left != right):
+                    if [nums[index], nums[left], nums[right]] not in listing:
+                        listing.append([nums[index], nums[left], nums[right]])
+                if sums < 0:
+                    left +=1
+                else:
+                    right -=1
         return listing
 
 sol = Solution()
-nums = []
 NoOfelements = int(input("Enter The Total Number Of Elements To Be Insert In A List: "))
+nums = []
 for index in range(NoOfelements):
     element = int(input(f"Enter The {index+1} Elements To Be Insert In A List: "))
     nums.append(element)

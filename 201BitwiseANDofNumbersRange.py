@@ -14,10 +14,19 @@
 
 class Solution:
     def andFun(self, num1, num2):
-        bnum1, bnum2 = int(bin(num1)[2:]), int(bin(num2)[2:])
-        result = bnum1 & bnum2
-        print(bin(result), type(result))
-        return result
+        # -------//First Method by shifting bit until smaller number remain smaller number bigger number. Here Num1 is small and Num2 is greater.
+        shifts = int(0)
+        while(num1<num2):
+            num1, num2 = num1>>1, num2>>1
+            shifts +=1
+        return num1<<shifts
+    
+        # -------//Second Method to find and of both numbers using greater number. Here Num2 is greater number.
+        # while(num1<num2):
+        #     num2 = num2 & (num2-1)
+        # return num1 & num2
+
+
 
 sol = Solution()
 num1 = int(input("Enter The First Integer Number: "))

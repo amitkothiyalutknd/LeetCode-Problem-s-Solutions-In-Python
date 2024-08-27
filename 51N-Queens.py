@@ -44,4 +44,4 @@ class Solution:
 
 sol = Solution()
 noOfQueens = int(input("Enter The Number Of Queen To Be Place On Board:"))
-print(f"There Is Solution To The {noOfQueens} Puzzle Is:\t", sol.solveNQueens(noOfQueens))
+print(f"There Is Solution To The {noOfQueens}-Queen Puzzle Is:\t", sol.solveNQueens(noOfQueens))
